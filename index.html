@@ -23,21 +23,21 @@
             <div class="hero-section">
                 <div class="carousel">
                     <div class="carousel-item active">
-                        <img src="assets/images/hero1.jpg" alt="Discover Your Destiny">
+                        <img src="assets/images/hero4.jpeg" alt="Discover Your Destiny">
                         <div class="carousel-content">
                             <h2>Discover Your Destiny</h2>
                             <p>Let the stars guide you through life's journey with our expert astrological insights.</p>
                         </div>
                     </div>
                     <div class="carousel-item">
-                        <img src="assets/images/hero2.jpg" alt="Unlock Your Potential">
+                        <img src="assets/images/hero6.jpeg" alt="Unlock Your Potential">
                         <div class="carousel-content">
                             <h2>Unlock Your Potential</h2>
                             <p>Understanding your cosmic blueprint can reveal hidden opportunities and talents.</p>
                         </div>
                     </div>
                     <div class="carousel-item">
-                        <img src="assets/images/hero3.jpg" alt="Navigate Your Future">
+                        <img src="assets/images/hero5.jpeg" alt="Navigate Your Future">
                         <div class="carousel-content">
                             <h2>Navigate Your Future</h2>
                             <p>Our accurate predictions help you make informed decisions for a brighter tomorrow.</p>
@@ -205,7 +205,7 @@
                     <h2>Begin Your Journey</h2>
                     <p class="form-subtitle">Fill in your details to receive your cosmic insights</p>
                     
-                    <form action="https://formspree.io/f/mdkgekol" method="POST" class="astro-form">
+                    <form id="astroForm" class="astro-form">
                         <div class="form-group">
                             <label for="fullName">Full Name</label>
                             <input type="text" id="fullName" name="fullName" required autocomplete="name">
@@ -277,6 +277,36 @@
     <script src="script.js"></script>
     <script>
         console.log('UNIQUE LOG: script.js from static-version loaded');
+
+        document.getElementById('astroForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            const form = e.target;
+            const data = {
+                fullName: form.fullName.value,
+                dob: form.dob.value,
+                timeOfBirth: form.timeOfBirth.value,
+                placeOfBirth: form.placeOfBirth.value,
+                email: form.email.value,
+                phone: form.phone.value,
+                captchaAnswer: form.captchaAnswer.value
+            };
+            try {
+                const response = await fetch('https://script.google.com/macros/s/AKfycbznLxMS6OUow2B5OB6qDdj8omTKmypTf3A0RvtyzEPC9loJEJPyd6zbQYw6oW-jdppL/exec', {
+                    method: 'POST',
+                    body: JSON.stringify(data),
+                    headers: {'Content-Type': 'application/json'}
+                });
+                const result = await response.json();
+                if (result.result === "success") {
+                    // Show your modal or thank you message here
+                    document.getElementById('thankYouModal').style.display = 'block';
+                } else {
+                    alert('Submission failed!');
+                }
+            } catch (err) {
+                alert('Error submitting form.');
+            }
+        });
     </script>
 </body>
-</html> 
+</html>

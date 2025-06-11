@@ -133,16 +133,26 @@ document.addEventListener('DOMContentLoaded', () => {
             } else {
                 if (errorElement) errorElement.textContent = '';
             }
-            const formData = new FormData(astroForm);
+            // Gather form data as JSON
+            const data = {
+                fullName: astroForm.fullName.value,
+                dob: astroForm.dob.value,
+                timeOfBirth: astroForm.timeOfBirth.value,
+                placeOfBirth: astroForm.placeOfBirth.value,
+                email: astroForm.email.value,
+                phone: astroForm.phone.value,
+                captchaAnswer: astroForm.captchaAnswer.value
+            };
             try {
-                const response = await fetch(astroForm.action, {
+                const response = await fetch('https://script.google.com/macros/s/AKfycbznLxMS6OUow2B5OB6qDdj8omTKmypTf3A0RvtyzEPC9loJEJPyd6zbQYw6oW-jdppL/exec', {
                     method: 'POST',
-                    body: formData,
+                    body: JSON.stringify(data),
                     headers: {
-                        'Accept': 'application/json'
+                        'Content-Type': 'application/json'
                     }
                 });
-                if (response.ok) {
+                const result = await response.json();
+                if (result.result === 'success') {
                     astroForm.reset();
                     generateCaptcha();
                     if (thankYouModal) thankYouModal.style.display = 'block';
@@ -154,4 +164,4 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     }
-}); 
+});
