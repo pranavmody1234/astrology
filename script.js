@@ -144,7 +144,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 captchaAnswer: astroForm.captchaAnswer.value
             };
             try {
-                const response = await fetch('https://script.google.com/macros/s/AKfycbw5_afEJMylBHfMwHqqKRC45vVORV6p3DbX-iuBY33ZrVVSAJnwvW7O-RLp9_vizciz/exec', {
+                const response = await fetch('https://script.google.com/macros/s/AKfycbyVMdm70hiqsC6v1MlF0vypsGx1cAGVIVz4_9f4i9CfdGEG5f7P4kfXEPICOXUVnMcn/exec', {
                     method: 'POST',
                     body: JSON.stringify(data),
                     headers: {
