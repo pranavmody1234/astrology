@@ -232,8 +232,36 @@
                             <span class="error-message"></span>
                         </div>
                         <div class="form-group">
+                            <label for="countryCode">Country Code</label>
+                            <select id="countryCode" name="countryCode" required>
+                                <option value="">Select</option>
+                                <option value="+1">+1 (USA/Canada)</option>
+                                <option value="+44">+44 (UK)</option>
+                                <option value="+91">+91 (India)</option>
+                                <option value="+61">+61 (Australia)</option>
+                                <option value="+81">+81 (Japan)</option>
+                                <option value="+49">+49 (Germany)</option>
+                                <option value="+971">+971 (UAE)</option>
+                                <option value="+65">+65 (Singapore)</option>
+                                <option value="+33">+33 (France)</option>
+                                <option value="+39">+39 (Italy)</option>
+                                <option value="+7">+7 (Russia)</option>
+                                <option value="+86">+86 (China)</option>
+                                <option value="+880">+880 (Bangladesh)</option>
+                                <option value="+92">+92 (Pakistan)</option>
+                                <option value="+20">+20 (Egypt)</option>
+                                <option value="+966">+966 (Saudi Arabia)</option>
+                                <option value="+234">+234 (Nigeria)</option>
+                                <option value="+27">+27 (South Africa)</option>
+                                <option value="+82">+82 (South Korea)</option>
+                                <option value="+34">+34 (Spain)</option>
+                                <!-- Add more as needed -->
+                            </select>
+                            <span class="error-message"></span>
+                        </div>
+                        <div class="form-group">
                             <label for="phone">Phone Number</label>
-                            <input type="tel" id="phone" name="phone" required autocomplete="tel">
+                            <input type="tel" id="phone" name="phone" required autocomplete="tel" placeholder="1234567890" pattern="\d{7,15}">
                             <span class="error-message"></span>
                         </div>
                         <div class="form-group captcha-group">
@@ -275,38 +303,5 @@
         </div>
     </div>
     <script src="script.js"></script>
-    <script>
-        console.log('UNIQUE LOG: script.js from static-version loaded');
-
-        document.getElementById('astroForm').addEventListener('submit', async function(e) {
-            e.preventDefault();
-            const form = e.target;
-            const data = {
-                fullName: form.fullName.value,
-                dob: form.dob.value,
-                timeOfBirth: form.timeOfBirth.value,
-                placeOfBirth: form.placeOfBirth.value,
-                email: form.email.value,
-                phone: form.phone.value,
-                captchaAnswer: form.captchaAnswer.value
-            };
-            try {
-                const response = await fetch('https://script.google.com/macros/s/AKfycbznLxMS6OUow2B5OB6qDdj8omTKmypTf3A0RvtyzEPC9loJEJPyd6zbQYw6oW-jdppL/exec', {
-                    method: 'POST',
-                    body: JSON.stringify(data),
-                    headers: {'Content-Type': 'application/json'}
-                });
-                const result = await response.json();
-                if (result.result === "success") {
-                    // Show your modal or thank you message here
-                    document.getElementById('thankYouModal').style.display = 'block';
-                } else {
-                    alert('Submission failed!');
-                }
-            } catch (err) {
-                alert('Error submitting form.');
-            }
-        });
-    </script>
 </body>
 </html>
