@@ -146,13 +146,12 @@ document.addEventListener('DOMContentLoaded', () => {
             try {
                 const response = await fetch('https://sheetdb.io/api/v1/kfy8lb06ra0cb', {
                     method: 'POST',
-                    body: JSON.stringify(data),
+                    body: JSON.stringify({ data }), // <-- wrap in { data }
                     headers: {
                         'Content-Type': 'application/json'
                     }
                 });
-                const result = await response.json();
-                if (result.result === 'success') {
+                if (response.ok) {
                     astroForm.reset();
                     generateCaptcha();
                     if (thankYouModal) thankYouModal.style.display = 'block';
