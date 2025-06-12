@@ -9,7 +9,10 @@ body {
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
     line-height: 1.6;
     color: #333;
-    background-color: #f5f5f5;
+    background: url('assets/images/bgimage2.jpeg') no-repeat center center fixed;
+    background-size: cover;
+    background-color: #222;
+    /* fallback color */
 }
 
 /* Layout */
@@ -17,6 +20,69 @@ body {
     min-height: 100vh;
     display: flex;
     flex-direction: column;
+    background: rgba(255,255,255,0.85); /* subtle white overlay for readability */
+    border-radius: 12px;
+    box-shadow: 0 4px 24px rgba(0,0,0,0.12);
+    margin: 24px auto;
+    max-width: 1200px;
+    padding: 0 0 24px 0;
+}
+
+.content-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    background-color: #ffffff;
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.about-feature {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 0.5rem;
+    padding: 1.5rem;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.pricing-card {
+    background-color: white;
+    border-radius: 8px;
+    padding: 2rem;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    position: relative;
+    transition: transform 0.3s ease;
+}
+
+.step {
+    padding: 2rem;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.astro-form {
+    max-width: 600px;
+    margin: 2rem auto;
+    padding: 2rem;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.modal-content {
+    position: relative;
+    background-color: white;
+    margin: 15% auto;
+    padding: 2rem;
+    width: 90%;
+    max-width: 500px;
+    border-radius: 8px;
+    text-align: center;
 }
 
 /* Navigation */
@@ -57,15 +123,9 @@ body {
 main {
     flex: 1;
     padding: 2rem;
-}
-
-.content-container {
-    max-width: 1400px;
-    margin: 0 auto;
-    background-color: #ffffff;
-    padding: 2rem;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    background: rgba(255,255,255,0.92);
+    border-radius: 10px;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.08);
 }
 
 h1 {
@@ -639,4 +699,10 @@ footer {
     .about-icon-container {
         margin: 0 auto;
     }
-} 
+}
+
+/* Remove background-image from main content divs, keep only overlays for readability */
+.app-container, .content-container, .about-feature, .pricing-card, .step, .astro-form, .modal-content {
+    background-color: rgba(255,255,255,0.85);
+    /* Remove background-image */
+}
